@@ -14,6 +14,7 @@ import Link from "next/link";
 import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import Footer from "./Footer";
 
 const MobileNav = ({ user }: MobileNavProps) => {
   const pathname = usePathname();
@@ -60,22 +61,20 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     <SheetClose asChild key={item.route}>
                       <Link
                         href={item.route}
-               
                         //if is active use bg-bank-gradient style class
                         className={cn("mobilenav-sheet_close w-full", {
                           "bg-bank-gradient": isActive,
                         })}
                       >
-                        
-                          <Image
-                            src={item.imgURL}
-                            alt={item.label}
-                            width={20}
-                            height={20}
-                            className={cn({
-                              "brightness-[3] invert-0": isActive,
-                            })}
-                          />
+                        <Image
+                          src={item.imgURL}
+                          alt={item.label}
+                          width={20}
+                          height={20}
+                          className={cn({
+                            "brightness-[3] invert-0": isActive,
+                          })}
+                        />
                         <p
                           className={cn("text-16 font-semibold text-black-2 ", {
                             "!text-white": isActive,
@@ -87,12 +86,11 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     </SheetClose>
                   );
                 })}
-
                 USER
               </nav>
             </SheetClose>
 
-            FOOTER
+            <Footer user={user} />
           </div>
         </SheetContent>
       </Sheet>

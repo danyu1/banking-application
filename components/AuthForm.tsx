@@ -22,6 +22,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
+import CustomInput from "./CustomInput";
 
 //function that accepts the type we are trying to validate
 //without this type, the form trys to validate all the props behind the scenes even if we are
@@ -128,215 +129,76 @@ const AuthForm = ({ type }: { type: string }) => {
               {type === "sign-up" && (
                 <>
                   <div className="flex gap-4">
-                    <FormField
+                    <CustomInput
                       control={form.control}
                       name="firstName"
-                      render={({ field }) => (
-                        <div className="form-item">
-                          <FormLabel className="form-label">
-                            First Name
-                          </FormLabel>
-                          <div className="flex w-full flex-col">
-                            <FormControl>
-                              <Input
-                                className="input-class"
-                                placeholder="Enter your first name"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage className="form-message mt-2" />
-                          </div>
-                        </div>
-                      )}
+                      label="First Name"
+                      placeholder="Enter your first name"
                     />
-                    <FormField
+                    <CustomInput
                       control={form.control}
                       name="lastName"
-                      render={({ field }) => (
-                        <div className="form-item">
-                          <FormLabel className="form-label">
-                            Last Name
-                          </FormLabel>
-                          <div className="flex w-full flex-col">
-                            <FormControl>
-                              <Input
-                                className="input-class"
-                                placeholder="Enter your last name"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage className="form-message mt-2" />
-                          </div>
-                        </div>
-                      )}
+                      label="Last Name"
+                      placeholder="Enter your first name"
                     />
                   </div>
-
-                  <FormField
+                  <CustomInput
                     control={form.control}
                     name="address1"
-                    render={({ field }) => (
-                      <div className="form-item">
-                        <FormLabel className="form-label">Address</FormLabel>
-                        <div className="flex w-full flex-col">
-                          <FormControl>
-                            <Input
-                              className="input-class"
-                              placeholder="Enter your specific address"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage className="form-message mt-2" />
-                        </div>
-                      </div>
-                    )}
+                    label="Address"
+                    placeholder="Enter your specific address"
                   />
-                  <FormField
+                  <CustomInput
                     control={form.control}
                     name="city"
-                    render={({ field }) => (
-                      <div className="form-item">
-                        <FormLabel className="form-label">City</FormLabel>
-                        <div className="flex w-full flex-col">
-                          <FormControl>
-                            <Input
-                              className="input-class"
-                              placeholder="Enter your specific city"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage className="form-message mt-2" />
-                        </div>
-                      </div>
-                    )}
+                    label="City"
+                    placeholder="Enter your city"
                   />
                   <div className="flex gap-4">
-                    <FormField
+                    <CustomInput
                       control={form.control}
                       name="state"
-                      render={({ field }) => (
-                        <div className="form-item">
-                          <FormLabel className="form-label">State</FormLabel>
-                          <div className="flex w-full flex-col">
-                            <FormControl>
-                              <Input
-                                className="input-class"
-                                placeholder="Example: CA"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage className="form-message mt-2" />
-                          </div>
-                        </div>
-                      )}
+                      label="State"
+                      placeholder="Example: NY"
                     />
-                    <FormField
+                    <CustomInput
                       control={form.control}
                       name="postalCode"
-                      render={({ field }) => (
-                        <div className="form-item">
-                          <FormLabel className="form-label">
-                            Postal Code
-                          </FormLabel>
-                          <div className="flex w-full flex-col">
-                            <FormControl>
-                              <Input
-                                className="input-class"
-                                placeholder="Example: 90249"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage className="form-message mt-2" />
-                          </div>
-                        </div>
-                      )}
+                      label="Postal Code"
+                      placeholder="Example: 11101"
                     />
                   </div>
-
                   <div className="flex gap-4">
-                    <FormField
+                    <CustomInput
                       control={form.control}
                       name="dateOfBirth"
-                      render={({ field }) => (
-                        <div className="form-item">
-                          <FormLabel className="form-label">
-                            Date of Birth
-                          </FormLabel>
-                          <div className="flex w-full flex-col">
-                            <FormControl>
-                              <Input
-                                className="input-class"
-                                placeholder="yyyy-mm-dd"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage className="form-message mt-2" />
-                          </div>
-                        </div>
-                      )}
+                      label="Date of Birth"
+                      placeholder="YYYY-MM-DD"
                     />
-                    <FormField
+                    <CustomInput
                       control={form.control}
                       name="ssn"
-                      render={({ field }) => (
-                        <div className="form-item">
-                          <FormLabel className="form-label">SSN</FormLabel>
-                          <div className="flex w-full flex-col">
-                            <FormControl>
-                              <Input
-                                className="input-class"
-                                placeholder="Example: 1234"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage className="form-message mt-2" />
-                          </div>
-                        </div>
-                      )}
+                      label="SSN"
+                      placeholder="Example: 1234"
                     />
                   </div>
                 </>
               )}
-              {/*sign in forms*/}
-              <FormField
+
+              <CustomInput
                 control={form.control}
                 name="email"
-                render={({ field }) => (
-                  <div className="form-item">
-                    <FormLabel className="form-label">Email</FormLabel>
-                    <div className="flex w-full flex-col">
-                      <FormControl>
-                        <Input
-                          className="input-class"
-                          placeholder="Enter your email"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className="form-message mt-2" />
-                    </div>
-                  </div>
-                )}
+                label="Email"
+                placeholder="Enter your email"
               />
-              <FormField
+
+              <CustomInput
                 control={form.control}
                 name="password"
-                render={({ field }) => (
-                  <div className="form-item">
-                    <FormLabel className="form-label">Password</FormLabel>
-                    <div className="flex w-full flex-col">
-                      <FormControl>
-                        <Input
-                          className="input-class"
-                          placeholder="Enter your password"
-                          type="password"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className="form-message mt-2" />
-                    </div>
-                  </div>
-                )}
+                label="Password"
+                placeholder="Enter your password"
               />
+
               {/*make sure to disable the button if it's loading*/}
               <div className="flex flex-col gap-4">
                 <Button type="submit" className="form-btn" disabled={isLoading}>
