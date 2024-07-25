@@ -21,6 +21,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
 
 //function that accepts the type we are trying to validate
 //without this type, the form trys to validate all the props behind the scenes even if we are
@@ -45,7 +46,7 @@ const authFormSchema = (type: string) =>
   });
 
 const AuthForm = ({ type }: { type: string }) => {
-    const router = useRouter();
+  const router = useRouter();
   const [user, setuser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -74,13 +75,14 @@ const AuthForm = ({ type }: { type: string }) => {
         const newUser = await signUp(values);
         setuser(newUser);
       }
-      if (type === 'sign-in') {
+      if (type === "sign-in") {
         const response = await signIn({
-            email: values.email, password: values.password,
-        })
+          email: values.email,
+          password: values.password,
+        });
         //if we get a response / response isn't null get sent to the home page
         if (response) {
-            router.push('/')
+          router.push("/");
         }
       }
     } catch (error) {
@@ -110,7 +112,7 @@ const AuthForm = ({ type }: { type: string }) => {
             {user ? "Link Account" : type === "sign-in" ? "Sign In" : "Sign Up"}
             <p className="text-16 font-normal text-gray-600">
               {user
-                ? "Link you account to get started"
+                ? "Link your account to get started"
                 : "Please enter your details."}
             </p>
           </h1>
@@ -346,7 +348,7 @@ const AuthForm = ({ type }: { type: string }) => {
                   ) : type === "sign-in" ? (
                     "Sign In"
                   ) : (
-                    "sign-up"
+                    "Sign Up"
                   )}
                 </Button>
               </div>
