@@ -20,18 +20,14 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
     getLinkToken();
   }, [user]);
 
-  //dont want to recall it everytime it gets called rather its just a callback we're passing that happens on success
-  const onSuccess = useCallback<PlaidLinkOnSuccess>(
-    async (public_token: string) => {
-      //whenever the user changes, recall
-      await exchangePublicToken({
-        publicToken: public_token,
-        user,
-      });
-      router.push("/");
-    },
-    [user]
-  );
+  const onSuccess = useCallback<PlaidLinkOnSuccess>(async (public_token: string) => {
+    await exchangePublicToken({
+      publicToken: public_token,
+      user,
+    })
+
+    router.push('/');
+  }, [user])
   
   const config: PlaidLinkOptions = {
     token,
@@ -65,10 +61,10 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
           <Image 
             src="/icons/connect-bank.svg"
             alt="connect bank"
-            width={26}
-            height={26}
+            width={24}
+            height={24}
           />
-          <p className='text-[16px] font-semibold text-black-2 max-xl:hidden'>Connect bank</p>
+          <p className='text-[16px] font-semibold text-black-2'>Connect bank</p>
         </Button>
       )}
     </>

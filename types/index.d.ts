@@ -6,7 +6,7 @@ declare type SearchParamProps = {
 };
 
 // ========================================
-//? means that these params are optional
+
 declare type SignUpParams = {
   firstName: string;
   lastName: string;
@@ -60,7 +60,7 @@ declare type Account = {
   type: string;
   subtype: string;
   appwriteItemId: string;
-  sharableId: string;
+  shareableId: string;
 };
 
 declare type Transaction = {
@@ -211,7 +211,7 @@ declare interface TotalBalanceBoxProps {
 
 declare interface FooterProps {
   user: User;
-  type?: "mobile" | "desktop";
+  type?: 'mobile' | 'desktop'
 }
 
 declare interface RightSidebarProps {
